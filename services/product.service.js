@@ -6,6 +6,9 @@ const { models } = require('../libs/sequelize');
 class ProductsService {
   constructor() {
     //models
+    /**
+     * Se queda sin constructor el product service
+     */
   }
 
   async create(data) {
