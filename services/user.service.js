@@ -1,16 +1,11 @@
-
-const pool = require('../libs/postgres.pool');
-
-const {models} = require('../libs/sequelize');
-
+const { models } = require('../libs/sequelize');
+const boom = require('@hapi/boom');
 class UserService {
-  constructor() {
-    this.pool = pool;
-    this.pool.on('error', (err) => console.error(err));
-  }
+  constructor() {}
 
   async create(data) {
-    return data;
+    const rta = await models.User.create(data);
+    return rta;
   }
 
   async find() {
@@ -19,18 +14,24 @@ class UserService {
   }
 
   async findOne(id) {
-    return { id };
+    const user = await models.User.findByPk(id);
+    if(!user){
+      throw boom.notFound(`User ${id} Not found`);
+    }
+    return user;
   }
 
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const user = await this.findOne(id);
+    await user.update(changes);
+    return {id}
   }
 
   async delete(id) {
-    return { id };
+    const user = await this.findOne(id);
+    await user.destroy();
+    return {id};
+
   }
 }
 
