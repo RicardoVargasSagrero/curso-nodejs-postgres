@@ -1,8 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const { USER_TABLE } = require('./../models/user.model');
+const CUSTOMER_TABLE = 'customers';
 
-const CUSTUMER_TABLE = 'customers';
-
-const CustumerSchema = {
+const CustomerSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -27,20 +27,37 @@ const CustumerSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
+  userId: {
+    fiel: 'user_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    unique: true,
+    references: {
+      model: USER_TABLE,
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
+  },
 };
 
-class Custumer extends Model {
-  static associate() {
-    //
+class Customer extends Model {
+  static associate(models) {
+    //En este método van las asociaciones
+    Customer.belongsTo(models.User, { as: 'user' });
+    Customer.hasMany(models.Order,{
+      as: 'orders',
+      foreignKey: 'customerId'
+    })
   }
   static config(sequelize) {
     return {
       sequelize,
-      tableName: CUSTUMER_TABLE,
+      tableName: CUSTOMER_TABLE,
       modelName: 'Customer',
       timestamps: false,
     };
   }
 }
 
-module.export = { Custumer, CustumerSchema, CUSTUMER_TABLE };
+module.exports = { Customer, CustomerSchema, CUSTOMER_TABLE };

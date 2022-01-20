@@ -1,14 +1,20 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const { CATEGORY_TABLE } = require('./../models/category.model');
 
 const PRODUCTS_TABLE = 'products';
 const ProductSchema = {
   /** ID, name price img */
   id: {
     allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
   },
   name: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  description: {
     allowNull: false,
     type: DataTypes.STRING,
   },
@@ -26,10 +32,23 @@ const ProductSchema = {
     fiel: 'create_at',
     defaultValue: Sequelize.NOW,
   },
+  categoryId: {
+    fiel: 'category_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: CATEGORY_TABLE,
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
+  },
 };
 class Product extends Model {
-  static associate() {
-    //models
+  static associate(models) {
+    Product.belongsTo(models.Category, {
+      as: 'category',
+    });
   }
   static config(sequelize) {
     return {

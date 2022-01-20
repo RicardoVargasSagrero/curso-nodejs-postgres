@@ -9,13 +9,15 @@ class UserService {
   }
 
   async find() {
-    const rta = await models.User.findAll();
+    const rta = await models.User.findAll({
+      include: ['customer'],
+    });
     return rta;
   }
 
   async findOne(id) {
     const user = await models.User.findByPk(id);
-    if(!user){
+    if (!user) {
       throw boom.notFound(`User ${id} Not found`);
     }
     return user;
@@ -24,14 +26,13 @@ class UserService {
   async update(id, changes) {
     const user = await this.findOne(id);
     await user.update(changes);
-    return {id}
+    return { id };
   }
 
   async delete(id) {
     const user = await this.findOne(id);
     await user.destroy();
-    return {id};
-
+    return { id };
   }
 }
 

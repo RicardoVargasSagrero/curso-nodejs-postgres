@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
+const {networkInterfaces} = require('os');
 
 const {
   logErrors,
@@ -43,4 +44,7 @@ app.use(errorHandler);
 
 app.listen(port, () => {
   console.log('Mi port' + port);
+  const interfaces = networkInterfaces();
+  const eth0 = interfaces.eth0;
+  console.log(`Ip = ${eth0[0].address}`);
 });
