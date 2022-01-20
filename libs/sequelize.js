@@ -8,12 +8,15 @@ const { setupModels } = require('../db/models');
 const options = {
   dialect: 'postgres',
   logging: config.isProd ? false : true,
+
 };
 
 if (config.isProd) {
-  options.ssl = {
-    rejectUnauthorized: false,
-  };
+  options.dialectOptions = {
+    ssl:{
+      rejectUnauthorized: false,
+    }
+  }
 }
 
 /**DATA BASE CONFIGURATION */
