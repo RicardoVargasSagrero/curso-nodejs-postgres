@@ -3,16 +3,17 @@
  * MODEL CREATION
  */
 const { USER_TABLE } = require('../models/user.model');
-const { DataTypes, Sequelize } = require('sequelize');
+const { DataTypes, Sequelize, UUIDV4 } = require('sequelize');
 
 module.exports = {
   up: async (queryInterface /**, Sequelize*/) => {
     await queryInterface.createTable(USER_TABLE, {
       id: {
         allowNull: false,
-        //autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         type: DataTypes.STRING,
+        defaultValue: UUIDV4,
       },
       email: {
         allowNull: false,

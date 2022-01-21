@@ -1,13 +1,14 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize, UUIDV4 } = require('sequelize');
 
 const CATEGORY_TABLE = 'categories';
 
 const CategorySchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
     type: DataTypes.INTEGER,
+    defaultValue: UUIDV4,
   },
   name: {
     allowNull: false,

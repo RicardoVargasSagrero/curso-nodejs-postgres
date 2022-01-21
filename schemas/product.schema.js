@@ -12,7 +12,6 @@ const products = Joi.object();
  * Rango de precios
  */
 const price_min = Joi.number();
-const price_max = Joi.number();
 
 /**
  * Paginacion

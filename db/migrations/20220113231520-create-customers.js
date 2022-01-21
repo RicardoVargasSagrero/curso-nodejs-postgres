@@ -2,16 +2,17 @@
 
 const { CUSTOMER_TABLE } = require('../models/customer.model');
 const {USER_TABLE} = require('./../models/user.model');
-const { DataTypes, Sequelize} = require('sequelize');
+const { DataTypes, Sequelize, UUIDV4} = require('sequelize');
 
 module.exports = {
   up: async (queryInterface /**, Sequelize*/) => {
     await queryInterface.createTable(CUSTOMER_TABLE, {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         type: DataTypes.INTEGER,
+        defaultValue: UUIDV4,
       },
       name: {
         allowNull: false,

@@ -1,13 +1,14 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize, UUIDV4 } = require('sequelize');
 const { CUSTOMER_TABLE } = require('./../models/customer.model');
 const ORDER_TABLE = 'orders';
 
 const OrderSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
     type: DataTypes.INTEGER,
+    defaultValue: UUIDV4,
   },
   createdAt: {
     allowNull: false,

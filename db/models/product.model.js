@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize, UUIDV4 } = require('sequelize');
 const { CATEGORY_TABLE } = require('./../models/category.model');
 
 const PRODUCTS_TABLE = 'products';
@@ -6,9 +6,10 @@ const ProductSchema = {
   /** ID, name price img */
   id: {
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
     type: DataTypes.INTEGER,
+    defaultValue: UUIDV4,
   },
   name: {
     allowNull: false,

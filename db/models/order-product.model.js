@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize, UUIDV4 } = require('sequelize');
 
 const { ORDER_TABLE } = require('./order.model');
 const { PRODUCTS_TABLE } = require('./product.model');
@@ -8,9 +8,10 @@ const ORDER_PRODUCT_TABLE = 'orders_has_products';
 const OrderProductSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
     type: DataTypes.INTEGER,
+    defaultValue: UUIDV4,
   },
   createdAt: {
     allowNull: false,
@@ -47,7 +48,7 @@ const OrderProductSchema = {
 };
 
 class OrderProduct extends Model {
-  static associate(models) {
+  static associate() {
     //
   }
   static config(sequelize) {
