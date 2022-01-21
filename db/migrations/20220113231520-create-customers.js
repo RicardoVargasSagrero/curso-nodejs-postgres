@@ -33,15 +33,16 @@ module.exports = {
         defaultValue: Sequelize.NOW,
       },
       userId: {
-        fiel: 'user_id',
+        field: 'user_id',
         allowNull: false,
         type: DataTypes.INTEGER,
-        references: {
+        /* references: {
           model: USER_TABLE,
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
+        onDelete: 'SET NULL', */
+        unique: true,
       },
     });
   },
