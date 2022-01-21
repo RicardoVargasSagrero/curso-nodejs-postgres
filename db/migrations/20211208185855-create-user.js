@@ -10,7 +10,7 @@ module.exports = {
     await queryInterface.createTable(USER_TABLE, {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        //autoIncrement: true,
         primaryKey: true,
         type: DataTypes.STRING,
       },
