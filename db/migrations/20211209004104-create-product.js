@@ -9,7 +9,8 @@ module.exports = {
   },
 
   down: async (queryInterface /*Sequelize*/) => {
-    await queryInterface.dropTable(CATEGORY_TABLE);
     await queryInterface.dropTable(PRODUCTS_TABLE);
+    await queryInterface.dropTable(CATEGORY_TABLE);
+
   },
 };
