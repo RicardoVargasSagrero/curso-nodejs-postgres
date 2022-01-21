@@ -1,5 +1,5 @@
 'use strict';
-const { UserSchema, USER_TABLE } = require('../models/user.model');
+const { USER_TABLE } = require('../models/user.model');
 const { DataTypes} = require('sequelize');
 
 module.exports = {
@@ -12,6 +12,6 @@ module.exports = {
   },
 
   down: async (queryInterface /* Sequelize*/) => {
-    await queryInterface.removeColumn(UserSchema, 'role');
+    await queryInterface.removeColumn(USER_TABLE, 'role');
   },
 };
