@@ -36,7 +36,7 @@ const ProductSchema = {
   categoryId: {
     fiel: 'category_id',
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     references: {
       model: CATEGORY_TABLE,
       key: 'id',

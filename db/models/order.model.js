@@ -19,7 +19,7 @@ const OrderSchema = {
   customerId: {
     field: 'customer_id',
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     references: {
       model: CUSTOMER_TABLE,
       key: 'id',

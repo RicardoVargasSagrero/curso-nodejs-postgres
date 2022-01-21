@@ -30,7 +30,7 @@ const CustomerSchema = {
   userId: {
     fiel: 'user_id',
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     unique: true,
     references: {
       model: USER_TABLE,
