@@ -6,7 +6,7 @@ const { DataTypes } = require('sequelize');
 module.exports = {
   up: async (queryInterface /**, Sequelize*/) => {
     await queryInterface.changeColumn(CUSTOMER_TABLE, 'userId', {
-      fiel: 'user_id',
+      field: 'user_id',
       allowNull: false,
       type: DataTypes.INTEGER,
       unique: true,
