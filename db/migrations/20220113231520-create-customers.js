@@ -1,7 +1,6 @@
 'use strict';
 
 const { CUSTOMER_TABLE } = require('../models/customer.model');
-const {USER_TABLE} = require('./../models/user.model');
 const { DataTypes, Sequelize, UUIDV4} = require('sequelize');
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUIDV4,
         defaultValue: UUIDV4,
       },
       name: {

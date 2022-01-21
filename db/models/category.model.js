@@ -7,7 +7,7 @@ const CategorySchema = {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUIDV4,
     defaultValue: UUIDV4,
   },
   name: {
