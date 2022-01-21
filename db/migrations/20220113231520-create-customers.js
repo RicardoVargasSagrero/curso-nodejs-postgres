@@ -6,12 +6,6 @@ const { DataTypes, Sequelize, UUIDV4} = require('sequelize');
 
 module.exports = {
   up: async (queryInterface /**, Sequelize*/) => {
-    await queryInterface.changeColumn(CUSTOMER_TABLE, 'userId', {
-      fiel: 'user_id',
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      unique: true,
-    });
     await queryInterface.createTable(CUSTOMER_TABLE, {
       id: {
         allowNull: false,
