@@ -30,6 +30,9 @@ const options = {
 };
 app.use(cors(options));
 
+/**Authentication */
+require('./utils/auth');
+
 app.get('/', (req, res) => {
   res.send('Hola mi server en express');
 });
