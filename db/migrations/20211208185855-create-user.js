@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         defaultValue: UUIDV4,
         unique: true,
       },

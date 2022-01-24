@@ -1,13 +1,13 @@
 const Joi = require('joi');
 
-const id = Joi.number().integer();
+const id = Joi.string();
 const name = Joi.string().min(2);
 const lastName = Joi.string().min(2);
 const phone = Joi.string()
   .length(10)
   .pattern(/^[0-9]+$/)
   .required();
-const userId = Joi.number().integer();
+const userId = Joi.string();
 const email = Joi.string().email();
 const password = Joi.string().min(8);
 

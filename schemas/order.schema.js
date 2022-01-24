@@ -1,13 +1,13 @@
 const Joi = require('joi');
 
-const id = Joi.number().integer();
-const customerId = Joi.number().integer();
+const id = Joi.string();
+const customerId = Joi.string();
 const estado = Joi.string().min(2).max(25);
 /**
  * Order has Products
  */
-const orderId = Joi.number().integer();
-const productId = Joi.number().integer();
+const orderId = Joi.string();
+const productId = Joi.string();
 const amount = Joi.number().integer();
 
 const getOrderSchema = Joi.object({

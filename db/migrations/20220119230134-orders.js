@@ -11,7 +11,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         defaultValue: UUIDV4,
       },
       createdAt: {
@@ -23,7 +23,7 @@ module.exports = {
       customerId: {
         field: 'customer_id',
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         references: {
           model: CUSTOMER_TABLE,
           key: 'id',

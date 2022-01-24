@@ -1,12 +1,13 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize, UUIDV4 } = require('sequelize');
 
 const USER_TABLE = 'users';
 const UserSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
+    defaultValue: UUIDV4,
   },
   email: {
     allowNull: false,
@@ -34,7 +35,7 @@ class User extends Model {
   static associate(models) {
     this.hasOne(models.Customer, {
       as: 'customer',
-      foreignKey: 'userId',
+      foreignKey: 'user_id',
     });
   }
   static config(sequelize) {

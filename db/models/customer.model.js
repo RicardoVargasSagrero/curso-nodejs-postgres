@@ -1,13 +1,14 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize, UUIDV4} = require('sequelize');
 const { USER_TABLE } = require('./../models/user.model');
 const CUSTOMER_TABLE = 'customers';
 
 const CustomerSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
+    defaultValue: UUIDV4,
   },
   name: {
     allowNull: false,
@@ -28,9 +29,9 @@ const CustomerSchema = {
     defaultValue: Sequelize.NOW,
   },
   userId: {
-    fiel: 'user_id',
+    field: 'user_id',
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     unique: true,
     references: {
       model: USER_TABLE,

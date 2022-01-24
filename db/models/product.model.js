@@ -8,7 +8,7 @@ const ProductSchema = {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     defaultValue: UUIDV4,
   },
   name: {
@@ -34,9 +34,9 @@ const ProductSchema = {
     defaultValue: Sequelize.NOW,
   },
   categoryId: {
-    fiel: 'category_id',
+    field: 'category_id',
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     references: {
       model: CATEGORY_TABLE,
       key: 'id',

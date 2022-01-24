@@ -10,7 +10,7 @@ const OrderProductSchema = {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     defaultValue: UUIDV4,
   },
   createdAt: {
@@ -26,7 +26,7 @@ const OrderProductSchema = {
   orderId: {
     field: 'order_id',
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     references: {
       model: ORDER_TABLE,
       key: 'id',
@@ -37,7 +37,7 @@ const OrderProductSchema = {
   productId: {
     field: 'product_id',
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     references: {
       model: PRODUCTS_TABLE,
       key: 'id',
