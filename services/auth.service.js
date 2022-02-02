@@ -20,6 +20,7 @@ class AuthService {
      * Si pasa todos los filtros para que se puede ejecutar el done
      */
     delete user.dataValues.password;
+    delete user.dataValues.recoveryToken;
     return user;
   }
 
@@ -42,6 +43,7 @@ class AuthService {
     const payload = { sub: user.id };
     const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '15min' });
     const link = `http://myfrontend.com/recovery?token=${token}`;
+    await service.update(user.id, { recoveryToken: token });
     const mail = {
       from: 'downtoearthpruebas@gmail.com', // sender address
       to: `${user.email}`, // list of receivers
@@ -66,6 +68,22 @@ class AuthService {
     });
     await transporter.sendMail(infoMail);
     return { message: 'Mail sent' };
+  }
+
+  async changePassword(token, newPassword) {
+    /**Falta validación de newPassword */
+    try {
+      const payload = jwt.verify(token, config.jwtSecret);
+      const user = await service.findOne(payload.sub);
+      if (user.recoveryToken !== token) {
+        throw boom.unauthorized();
+      }
+      const hash = await bcrypt.hash(newPassword, 10);
+      await service.update(user.id, { recoveryToken: null, password: hash });
+      return { message: 'password changed' };
+    } catch (err) {
+      throw boom.unauthorized();
+    }
   }
 }
 

@@ -18,17 +18,29 @@ router.post(
   }
 );
 
-router.post(
-  '/recovery',
-  async (req, res, next) =>{
-    try{
-      const {email} = req.body;
-      const rta = await service.resetPassword(email);
-      res.json(rta);
-    }catch(err){
-      next(err);
-    }
+router.post('/recovery', async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const rta = await service.sendRecoveryPassword(email);
+    res.json(rta);
+  } catch (err) {
+    next(err);
   }
-)
+});
+
+/**Falta capa de validación de datos */
+
+router.post('/change-password',
+async (req, res, next) =>{
+  try{
+    const {token, newPassword} = req.body;
+    const rta = await service.changePassword(token, newPassword);
+    res.json(rta);
+  }
+  catch(err){
+    next(err);
+  }
+})
+
 
 module.exports = router;
