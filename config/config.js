@@ -10,5 +10,9 @@ const config = {
   dbName: process.env.DB_NAME,
   dbPort: process.env.DB_PORT,
   dbURL: process.env.DATABASE_URL,
+  apiKey: process.env.API_KEY,
+  jwtSecret: process.env.JWT_SECRET,
+  nodemailerEmail: process.env.SMTP_EMAIL,
+  nodemailerPassword: process.env.SMTP_PASSWORD,
 };
-module.exports = {config};
+module.exports = { config };

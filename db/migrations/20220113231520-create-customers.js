@@ -10,7 +10,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         defaultValue: UUIDV4,
       },
       name: {
@@ -34,7 +34,7 @@ module.exports = {
       userId: {
         field: 'user_id',
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         /* references: {
           model: USER_TABLE,
           key: 'id',

@@ -7,7 +7,7 @@ const OrderSchema = {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     defaultValue: UUIDV4,
   },
   createdAt: {
@@ -19,7 +19,7 @@ const OrderSchema = {
   customerId: {
     field: 'customer_id',
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     references: {
       model: CUSTOMER_TABLE,
       key: 'id',
@@ -32,9 +32,10 @@ const OrderSchema = {
     type: DataTypes.STRING,
   },
   total: {
+    allowNull: true,
     type: DataTypes.VIRTUAL,
     get(){
-      if(this.items.length > 0){
+      if(this.items && this.items.length > 0){
         return this.items.reduce((total, item) => {
           return total + (item.price * item.OrderProduct.amount);
         },0)

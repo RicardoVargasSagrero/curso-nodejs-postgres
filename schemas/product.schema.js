@@ -1,11 +1,11 @@
 const Joi = require('joi');
 
-const id = Joi.number().integer();
+const id = Joi.string();
 const name = Joi.string().min(3).max(255);
 const price = Joi.number().integer().min(10);
 const description = Joi.string().min(10);
 const image = Joi.string().uri();
-const categoryId = Joi.number().integer();
+const categoryId = Joi.string();
 const products = Joi.object();
 
 /**
