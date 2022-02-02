@@ -23,7 +23,7 @@ class OrderService {
           association: 'customer',
           include: ['user'],
         },
-        'items'
+        'items',
       ],
     });
     if (!order) {
@@ -31,7 +31,20 @@ class OrderService {
     }
     return order;
   }
-
+  async findByUser(userId) {
+    const orders = await models.Order.findAll({
+      where: {
+        '$customer.user.id$': userId,
+      },
+      include: [
+        {
+          association: 'customer',
+          include: ['user'],
+        },
+      ],
+    });
+    return orders;
+  }
   async update(id, changes) {
     const order = await this.findOne(id);
     await order.update(changes);

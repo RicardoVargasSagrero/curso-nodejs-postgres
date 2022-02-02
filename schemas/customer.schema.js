@@ -25,6 +25,13 @@ const createCustomerSchema = Joi.object({
   }),
 });
 
+const createCustomerWithUserSchema = Joi.object({
+  name: name.required(),
+  lastName: lastName.required(),
+  phone: phone.required(),
+  userId,
+});
+
 const updateCustomerSchema = Joi.object({
   name,
   lastName,
@@ -36,4 +43,5 @@ module.exports = {
   getCustomerSchema,
   createCustomerSchema,
   updateCustomerSchema,
+  createCustomerWithUserSchema,
 };

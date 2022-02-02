@@ -6,7 +6,9 @@ const {
   getCustomerSchema,
   updateCustomerSchema,
   createCustomerSchema,
+  createCustomerWithUserSchema,
 } = require('./../schemas/customer.schema');
+const passport = require('passport');
 const router = express.Router();
 const service = new CustomerService();
 
@@ -42,6 +44,23 @@ router.post(
       res.status(201).json(newCustomer);
     } catch (error) {
       next(error);
+    }
+  }
+);
+router.post(
+  '/user',
+  passport.authenticate('jwt', {session: false}),
+  validatorHandler(createCustomerWithUserSchema, 'body'),
+  async(req, res, next) =>{
+    try{
+      const data = {
+        ...req.body,
+        userId: req.user.sub,
+      };
+      const newCustomer = await service.createWithUser(data);
+      res.status(200).json(newCustomer);
+    }catch(err){
+      next(err);
     }
   }
 );
